@@ -21,15 +21,15 @@ public class CarDaoImpl implements CarDao {
     }
     @Override
     public List<Car> getCars(int count) {
-        if (count != 0) {
             List<Car> firstNCarsList = new ArrayList<>();
-            long limit = count;
-            for (Car car : cars) {
-                if (limit-- == 0) break;
-                firstNCarsList.add(car);
+            for (int i = 0; i < count; i++) {
+                firstNCarsList.add(cars.get(i));
             }
             return firstNCarsList;
-        }
+    }
+
+    @Override
+    public List<Car> getAllCars() {
         return cars;
     }
 }

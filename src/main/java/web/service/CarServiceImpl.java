@@ -6,6 +6,7 @@ import web.dao.CarDao;
 import web.model.Car;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CarServiceImpl implements CarService{
@@ -13,7 +14,12 @@ public class CarServiceImpl implements CarService{
     private CarDao carDao;
 
     @Override
-    public List<Car> getCar(int count) {
-        return carDao.getCars(count);
+    public List<Car> getCar(Integer count)
+    {
+        int intCount = Objects.requireNonNullElse(count, 0);
+        if (intCount == 0) {
+            return carDao.getAllCars();
+        }
+        return carDao.getCars(intCount);
     }
 }
