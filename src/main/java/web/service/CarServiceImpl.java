@@ -20,6 +20,6 @@ public class CarServiceImpl implements CarService{
         if (intCount == 0) {
             return carDao.getAllCars();
         }
-        return carDao.getCars(intCount);
+        return carDao.getAllCars().stream().limit(intCount).toList();
     }
 }
